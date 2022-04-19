@@ -184,17 +184,19 @@ process cramToFastq {
 
 process alignFastaFile {
   input:
-    tuple(sampleName, path(bam), path(ref))
-    file alignConsensusScript
-    params.consensusFastaFilePath
-    params.alignedFastaFilePath
-    params.refFastaPath
-
-  """
-  conda run -n artic python ${alignConsensusScript} --consensusFastaFilePath ${params.consensusFastaFilePath} --alignedFastaFilepath ${params.alignedFastaFilePath}
-  """
+    tuple(sampleName, path(bam))
+    // tuple(sampleName, path(bam), path(ref))
+    // file alignConsensusScript
+    // params.consensusFastaFilePath
+    // params.alignedFastaFilePath
+    // params.refFastaPath
+  script:
+    """
+    
+    conda run -n artic python -c "print('Hello World')"
+    """
 }
-
+// conda run -n artic python ${alignConsensusScript} --consensusFastaFilePath ${params.consensusFastaFilePath} --alignedFastaFilepath ${params.alignedFastaFilePath}
 // process variantGenotyper {
 //   input:
 //     file genotyperScript

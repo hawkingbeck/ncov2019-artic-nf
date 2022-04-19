@@ -185,11 +185,11 @@ process cramToFastq {
 process alignFastaFile {
   input:
     params.consensusFastaFilePath
-    tuple(sampleName, path(consensus))
+    tuple(sampleName, path(bam))
 
   script:
     """    
-    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${consensus} --alignedFastaFilepath "${consenus}/aligned/${consensus.baseName}.aligned"
+    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${bam} --alignedFastaFilepath "${bam}/aligned/${bam.baseName}.aligned"
     """
 }
 

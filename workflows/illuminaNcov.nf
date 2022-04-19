@@ -115,9 +115,9 @@ workflow sequenceAnalysis {
 
       writeQCSummaryCSV(qc.header.concat(qc.pass).concat(qc.fail).toList())
 
-      collateSamples(qc.pass.map{ it[0] }
-                           .join(makeConsensus.out, by: 0)
-                           .join(trimPrimerSequences.out.mapped))     
+      // collateSamples(qc.pass.map{ it[0] }
+      //                      .join(makeConsensus.out, by: 0)
+      //                      .join(trimPrimerSequences.out.mapped))     
 
       if (params.outCram) {
         bamToCram(trimPrimerSequences.out.mapped.map{it[0] } 

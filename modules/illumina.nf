@@ -182,3 +182,35 @@ process cramToFastq {
         """
 }
 
+process alignFastaFile {
+  input:
+    tuple(sampleName, path(bam), path(ref))
+    file alignConsensusScript
+    params.consensusFastaFilePath
+    params.alignedFastaFilePath
+    params.refFastaPath
+
+  """
+  conda run -n artic python ${alignConsensusScript} --consensusFastaFilePath ${params.consensusFastaFilePath} --alignedFastaFilepath ${params.alignedFastaFilePath}
+  """
+}
+
+// process variantGenotyper {
+//   input:
+//     file genotyperScript
+//     params.alignedFastaFilePath
+//     pheRecipesFile
+
+//     """
+//     conda run -n artic python ${genotyperScript} --fasta_filename ${params.alignedFastaFilePath} --genotype_recipe_filename ${pheRecipesFile}
+//     """
+// }
+
+// process pangolin {
+//   input:
+//     file pangolinScript
+
+//     """
+//     conda run -n pangolin python ${pangolinScript} --fasta_filename ${params.alignedFastaFilePath} --results_filename ${params.pangolinResultsFile}
+//     """
+// }

@@ -183,13 +183,16 @@ process cramToFastq {
 }
 
 process alignFastaFile {
+
+  publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.aligned.fa", mode: 'copy'
+
   input:
     params.consensusFastaFilePath
     tuple(sampleName, path(bam))
 
   script:
     """    
-    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${bam} --alignedFastaFilepath "${bam}/aligned/${bam.baseName}.aligned"
+    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${bam} --alignedFastaFilepath "${sampleName}.primertrimmed.aligned.fa"
     """
 }
 

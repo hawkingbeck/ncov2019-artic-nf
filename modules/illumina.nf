@@ -187,12 +187,14 @@ process alignFastaFile {
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.aligned.fa", mode: 'copy'
 
   input:
-    params.consensusFastaFilePath
     tuple(sampleName, path(bam))
+
+  output:
+    tuple(sampleName, path("${sampleName}.primertrimmed.aligned.fa"))
 
   script:
     """    
-    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${bam} --alignedFastaFilepath "${sampleName}.primertrimmed.aligned.fa"
+    conda run -n arti python ${params.alignConsensusScript} --consensusFastaFilePath ${bam} --alignedFastaFilepath "${sampleName}.primertrimmed.aligned.fa"
     """
 }
 

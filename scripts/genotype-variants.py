@@ -446,10 +446,12 @@ if __name__ == "__main__":
     with open(args.genotype_recipe_filename) as genotype_recipe_file:
         recipes = load_yaml(genotype_recipe_file)
     
+    assert(False)
     (matched_recipe_phe_label, 
     matched_recipe_pango_alias, 
     matched_confidence) = find_all_matching_recipes(recipes=recipes, sequence=sequence)
 
+    
     print(matched_recipe_phe_label, matched_recipe_pango_alias, matched_confidence, datetime.now(), sep="\t")
 
 

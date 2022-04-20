@@ -212,7 +212,7 @@ process variantGenotyper {
   output:
     tuple(sampleName, path("${sampleName}.pheVariant.csv"))
     
-
+  script:
     """
     conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile}
     """

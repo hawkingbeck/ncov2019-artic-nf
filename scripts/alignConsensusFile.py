@@ -50,7 +50,7 @@ if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='Align the fasta file')
   parser.add_argument('--consensusFastaFilePath', dest='consensusFastaFilePath', type=str, help='input consensus fasta file path')
   parser.add_argument('--alignedFastaFilepath', dest='alignedFastaFilepath', help='output file for the aligned fasta')
-  assert(False)
+  # assert(False)
   args = parser.parse_args()
   alignFasta("/home/ubuntu/resources/MN908947.fa", args.consensusFastaFilePath, args.alignedFastaFilepath, 265, 29674)
 

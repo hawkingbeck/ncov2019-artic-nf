@@ -431,6 +431,8 @@ if __name__ == "__main__":
     matched_recipe_pango_alias = "none"
     matched_recipe_phe_label = "none"
     matched_confidence = "NA"
+    
+    assert(False)
 
     logger.debug("Processing " + args.fasta_filename)
     with open(args.fasta_filename) as fasta_file:
@@ -446,7 +448,7 @@ if __name__ == "__main__":
     with open(args.genotype_recipe_filename) as genotype_recipe_file:
         recipes = load_yaml(genotype_recipe_file)
     
-    assert(False)
+    
     (matched_recipe_phe_label, 
     matched_recipe_pango_alias, 
     matched_confidence) = find_all_matching_recipes(recipes=recipes, sequence=sequence)

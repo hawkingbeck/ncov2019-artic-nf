@@ -420,6 +420,8 @@ if __name__ == "__main__":
                         action="store_true")
 
     args = parser.parse_args()
+    
+    assert(False)
 
     if args.verbose:
         ch.setLevel(logging.DEBUG)
@@ -431,8 +433,8 @@ if __name__ == "__main__":
     matched_recipe_pango_alias = "none"
     matched_recipe_phe_label = "none"
     matched_confidence = "NA"
+
     
-    assert(False)
 
     logger.debug("Processing " + args.fasta_filename)
     with open(args.fasta_filename) as fasta_file:

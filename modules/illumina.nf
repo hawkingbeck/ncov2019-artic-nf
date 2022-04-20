@@ -194,7 +194,7 @@ process alignFastaFile {
 
   script:
     """    
-    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${bam} --alignedFastaFilepath "${sampleName}.primertrimmed.aligned.fa"
+    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.primertrimmed.aligned.fa"
     """
 }
 

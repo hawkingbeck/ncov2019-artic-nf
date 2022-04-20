@@ -214,7 +214,7 @@ process variantGenotyper {
     
   script:
     """
-    conda run -n artic python -c "print('Hello World')
+    conda run -n artic python -c "print('Hello World')"
     """
 }
 // conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile}

@@ -156,7 +156,7 @@ process makeConsensus {
         """
         samtools mpileup -aa -A -B -d ${params.mpileupDepth} -Q0 ${bam} | \
         ivar consensus -t ${params.ivarFreqThreshold} -m ${params.ivarMinDepth} \
-        -n N -p ${sampleName}.primertrimmed.consensus
+        -n N -p ${sampleName}.primertrimmed.consensus.fa
         """
 }
 
@@ -190,7 +190,7 @@ process alignFastaFile {
     tuple(sampleName, path(bam))
 
   output:
-    tuple(sampleName, path("${sampleName}.primertrimmed.aligned.f"))
+    tuple(sampleName, path("${sampleName}.primertrimmed.aligned.fa"))
 
   script:
     """    

@@ -101,6 +101,8 @@ workflow sequenceAnalysis {
 
       alignFastaFile(makeConsensus.out)
 
+      variantGenotyper(alignFastaFile.out)
+
       makeQCCSV(trimPrimerSequences.out.ptrim.join(makeConsensus.out, by: 0)
                                    .combine(ch_preparedRef.map{ it[0] }))
 

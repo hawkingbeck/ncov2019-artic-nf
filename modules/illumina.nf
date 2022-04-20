@@ -198,22 +198,20 @@ process alignFastaFile {
     """
 }
 
-// tuple(sampleName, path(bam), path(ref))
-    // file alignConsensusScript
-    // params.consensusFastaFilePath
-    // params.alignedFastaFilePath
-    // params.refFastaPath
-// conda run -n artic python ${alignConsensusScript} --consensusFastaFilePath ${params.consensusFastaFilePath} --alignedFastaFilepath ${params.alignedFastaFilePath}
-// process variantGenotyper {
-//   input:
-//     file genotyperScript
-//     params.alignedFastaFilePath
-//     pheRecipesFile
+process variantGenotyper {
+  publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
 
-//     """
-//     conda run -n artic python ${genotyperScript} --fasta_filename ${params.alignedFastaFilePath} --genotype_recipe_filename ${pheRecipesFile}
-//     """
-// }
+  input:
+    tuple(sampleName, path(sampleName))
+
+  output:
+    tuple(sampleName, path("${sampleName}.pheVariant.csv"))
+    
+
+    """
+    conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile}
+    """
+}
 
 // process pangolin {
 //   input:

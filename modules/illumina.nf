@@ -190,7 +190,7 @@ process alignFastaFile {
     tuple(sampleName, path(bam))
 
   output:
-    tuple(sampleName, path("${sampleName}.primertrimmed.aligned.fa"))
+    tuple(sampleName, path("${sampleName}.primertrimmed.aligned.f"))
 
   script:
     """    

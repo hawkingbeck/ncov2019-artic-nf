@@ -150,7 +150,7 @@ process makeConsensus {
         tuple(sampleName, path(bam))
 
     output:
-        tuple(sampleName, path("${params.outdir}/${task.process.replaceAll(":","_")}/${sampleName}.primertrimmed.consensus.fa"))
+        tuple(sampleName, path("${sampleName}.primertrimmed.consensus.fa"))
 
     script:
         """
@@ -187,7 +187,7 @@ process alignFastaFile {
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.aligned.fa", mode: 'copy'
 
   input:
-    tuple(sampleName, path(bam))
+    tuple(sampleName, path(sampleName))
 
   output:
     tuple(sampleName, path("${sampleName}.primertrimmed.aligned.fa"))

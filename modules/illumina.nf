@@ -144,19 +144,19 @@ process makeConsensus {
 
     tag { sampleName }
 
-    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.consensu.fa", mode: 'copy'
+    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.consensus.fa", mode: 'copy'
 
     input:
         tuple(sampleName, path(bam))
 
     output:
-        tuple(sampleName, path("${sampleName}.primertrimmed.consensu.fa"))
+        tuple(sampleName, path("${params.outdir}/${task.process.replaceAll(":","_")}/${sampleName}.primertrimmed.consensus.fa"))
 
     script:
         """
         samtools mpileup -aa -A -B -d ${params.mpileupDepth} -Q0 ${bam} | \
         ivar consensus -t ${params.ivarFreqThreshold} -m ${params.ivarMinDepth} \
-        -n N -p ${sampleName}.primertrimmed.consensu
+        -n N -p ${sampleName}.primertrimmed.consensus
         """
 }
 

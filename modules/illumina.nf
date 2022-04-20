@@ -184,17 +184,17 @@ process cramToFastq {
 
 process alignFastaFile {
 
-  publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.aligned.fa", mode: 'copy'
+  publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName.replaceAll("consensus.fa","consensus.aligned.fa")}", mode: 'copy'
 
   input:
     tuple(sampleName, path(sampleName))
 
   output:
-    tuple(sampleName, path("${sampleName}.primertrimmed.aligned.fa"))
+    tuple(sampleName, path("${sampleName}.primertrimmed.consensus.aligned.fa"))
 
   script:
     """    
-    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.primertrimmed.aligned.fa"
+    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName.replaceAll("consensus.fa","consensus.aligned.fa")}"
     """
 }
 

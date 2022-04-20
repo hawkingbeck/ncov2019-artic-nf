@@ -184,6 +184,8 @@ process cramToFastq {
 
 process alignFastaFile {
 
+  tag { sampleName }
+
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.aligned.fa", mode: 'copy'
 
   input:
@@ -199,6 +201,9 @@ process alignFastaFile {
 }
 
 process variantGenotyper {
+  
+  tag { sampleName }
+
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
 
   input:

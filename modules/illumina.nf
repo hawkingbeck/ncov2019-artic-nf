@@ -192,7 +192,7 @@ process alignFastaFile {
     tuple(sampleName, path(sampleName))
 
   output:
-    tuple path("${sampleName}.aligned.fa")
+    tuple(sampleName, path("${sampleName}.aligned.fa"))
 
   script:
     """    
@@ -206,7 +206,7 @@ process variantGenotyper {
   // publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
 
   input:
-    tuple(sampleName, sampleName)
+    tuple(sampleName, path(sampleName))
 
   output:
     tuple(sampleName, path("${sampleName}.pheVariant.csv"))

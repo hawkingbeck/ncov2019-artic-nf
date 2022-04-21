@@ -192,14 +192,13 @@ process alignFastaFile {
     tuple(sampleName, path(sampleName))
 
   output:
-    tuple(sampleName, path("${sampleName}.aligned.fa"))
+    tuple sampleName, path("${sampleName}.aligned.fa")
 
   script:
     """    
     conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.aligned.fa"
     """
 }
-
 process variantGenotyper {
   
   tag { sampleName }

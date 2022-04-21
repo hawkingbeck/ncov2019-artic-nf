@@ -203,7 +203,7 @@ process variantGenotyper {
   
   tag { sampleName }
 
-  publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
+  // publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
 
   input:
     tuple(sampleName, sampleName)

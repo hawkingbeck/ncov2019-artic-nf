@@ -140,26 +140,6 @@ process callVariants {
         """
 }
 
-process makeConsensus {
-
-    tag { sampleName }
-
-    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.consensus.fa", mode: 'copy'
-
-    input:
-        tuple(sampleName, path(bam))
-
-    output:
-        tuple(sampleName, path("${sampleName}.primertrimmed.consensus.fa"))
-
-    script:
-        """
-        samtools mpileup -aa -A -B -d ${params.mpileupDepth} -Q0 ${bam} | \
-        ivar consensus -t ${params.ivarFreqThreshold} -m ${params.ivarMinDepth} \
-        -n N -p ${sampleName}.primertrimmed.consensus
-        """
-}
-
 process cramToFastq {
     /**
     * Converts CRAM to fastq (http://bio-bwa.sourceforge.net/)
@@ -182,6 +162,26 @@ process cramToFastq {
         """
 }
 
+process makeConsensus {
+
+    tag { sampleName }
+
+    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.consensus.fa", mode: 'copy'
+
+    input:
+        tuple(sampleName, path(bam))
+
+    output:
+        tuple(sampleName, path("${sampleName}.primertrimmed.consensus.fa"))
+
+    script:
+        """
+        samtools mpileup -aa -A -B -d ${params.mpileupDepth} -Q0 ${bam} | \
+        ivar consensus -t ${params.ivarFreqThreshold} -m ${params.ivarMinDepth} \
+        -n N -p ${sampleName}.primertrimmed.consensus
+        """
+}
+
 process alignFastaFile {
 
   tag { sampleName }
@@ -189,10 +189,10 @@ process alignFastaFile {
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.aligned.fa", mode: 'copy'
 
   input:
-    tuple(sampleName, path(sampleName))
+    tuple sampleName, path(sampleName)
 
   output:
-    tuple(sampleName, path("${sampleName}.aligned.fa"))
+    tuple sampleName //, path("${sampleName}.aligned.fa")
 
   script:
     """    
@@ -203,7 +203,7 @@ process variantGenotyper {
   
   tag { sampleName }
 
-  // publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
+  publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
 
   input:
     tuple(sampleName, path(sampleName))

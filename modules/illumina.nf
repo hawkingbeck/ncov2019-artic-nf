@@ -206,7 +206,7 @@ process variantGenotyper {
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
 
   input:
-    tuple sampleName, path(sampleName))
+    tuple sampleName, path(sampleName)
 
   output:
     tuple(sampleName, path("${sampleName}.pheVariant.csv"))

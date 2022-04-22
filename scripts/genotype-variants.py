@@ -421,7 +421,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     
-    assert(False)
+    
 
     if args.verbose:
         ch.setLevel(logging.DEBUG)
@@ -455,7 +455,7 @@ if __name__ == "__main__":
     matched_recipe_pango_alias, 
     matched_confidence) = find_all_matching_recipes(recipes=recipes, sequence=sequence)
 
-    
+    assert(False)
     print(matched_recipe_phe_label, matched_recipe_pango_alias, matched_confidence, datetime.now(), sep="\t")
 
 

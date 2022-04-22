@@ -14,6 +14,7 @@ include {makeConsensus} from '../modules/illumina.nf'
 include {cramToFastq} from '../modules/illumina.nf'
 include {alignFastaFile} from '../modules/illumina.nf'
 include {variantGenotyper} from '../modules/illumina.nf'
+include {pangolin} from '../modules/illumina.nf'
 
 
 include {makeQCCSV} from '../modules/qc.nf'
@@ -103,6 +104,8 @@ workflow sequenceAnalysis {
       alignFastaFile(makeConsensus.out)
 
       variantGenotyper(alignFastaFile.out)
+
+      pangolin(alignFastaFile.out)
 
       makeQCCSV(trimPrimerSequences.out.ptrim.join(makeConsensus.out, by: 0)
                                    .combine(ch_preparedRef.map{ it[0] }))

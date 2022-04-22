@@ -216,12 +216,19 @@ process variantGenotyper {
     conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile} --output_filename "${sampleName}.pheVariant.csv"
     """
 }
-// conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile}
-// process pangolin {
-//   input:
-//     file pangolinScript
 
-//     """
-//     conda run -n pangolin python ${pangolinScript} --fasta_filename ${params.alignedFastaFilePath} --results_filename ${params.pangolinResultsFile}
-//     """
-// }
+process pangolin {
+  tag { sampleName }
+
+  publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pangoCall.csv", mode: 'copy'
+
+  input:
+    tuple sampleName, path(sampleName)
+
+  output:
+    tuple(sampleName, path("${sampleName}.pangoCall.csv"))
+
+    """
+    conda run -n pangolin python ${params.pangolinScript} --fasta_filename ${sampleName} --results_filename "${sampleName}.pangoCall.csv"
+    """
+}

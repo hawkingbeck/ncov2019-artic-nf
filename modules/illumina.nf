@@ -213,7 +213,7 @@ process variantGenotyper {
     
   script:
     """
-    conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile}
+    conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile} --output_filename "${sampleName}.pheVariant.csv"
     """
 }
 // conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile}

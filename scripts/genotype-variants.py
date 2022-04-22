@@ -12,6 +12,7 @@ Logs debugging information to stderr
 """
 from csv import reader
 from argparse import ArgumentParser
+import pandas as pd
 from yaml import full_load as load_yaml
 from datetime import datetime
 from sys import exit, stderr
@@ -416,6 +417,7 @@ if __name__ == "__main__":
     parser = ArgumentParser(description='Genotype an aligned sequence on specified variants of interest')
     parser.add_argument('--fasta_filename', help="Single sample fasta, wuhan aligned")
     parser.add_argument('--genotype_recipe_filename', help="Concatenated YAML of PHE VOC/VUI recipes")
+    parser.add_argument('--output_filename', help="Location to write the results to")
     parser.add_argument("--verbose", help="increase output verbosity",
                         action="store_true")
 
@@ -455,8 +457,11 @@ if __name__ == "__main__":
     matched_recipe_pango_alias, 
     matched_confidence) = find_all_matching_recipes(recipes=recipes, sequence=sequence)
 
-    assert(False)
+    # assert(False)
     print(matched_recipe_phe_label, matched_recipe_pango_alias, matched_confidence, datetime.now(), sep="\t")
+    outputDf = pd.DataFrame({'genotypeVariant': matched_recipe_phe_label, 'genotypePangoAlias': matched_recipe_pango_alias, 'genotypeVariantConf': matched_confidence}, index=[0])
+    outputDf.to_csv(args.output_filename, index=False)
+
 
 
 

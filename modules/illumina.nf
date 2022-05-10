@@ -15,7 +15,7 @@ process readTrimming {
     tuple(val(sampleName), path(forward), path(reverse))
 
     output:
-    tuple(sampleName, path("*_val_1.fq.gz"), path("*_val_2.fq.gz")) optional true
+    tuple(val(sampleName), path("*_val_1.fq.gz"), path("*_val_2.fq.gz")) optional true
 
     script:
     """

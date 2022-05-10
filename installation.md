@@ -67,6 +67,12 @@ export PATH="$PATH:/usr/bin/samtools-1.9"
 export PATH="$PATH:/usr/bin/htslib-1.9"
 source ~/.profile
 
+## Install Trim-galore
+cd ~/repos
+git clone https://github.com/FelixKrueger/TrimGalore.git --branch 0.6.5
+cd TrimGalore
+
+
 ## Clone Nextflow pipeline repo
 cd ~/
 mkdir repos

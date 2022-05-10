@@ -12,6 +12,8 @@ include {trimPrimerSequences} from '../modules/illumina.nf'
 include {callVariants} from '../modules/illumina.nf'
 include {makeConsensus} from '../modules/illumina.nf' 
 include {cramToFastq} from '../modules/illumina.nf'
+
+// Import Heron Processes
 include {alignFastaFile} from '../modules/illumina.nf'
 include {variantGenotyper} from '../modules/illumina.nf'
 include {pangolin} from '../modules/illumina.nf'

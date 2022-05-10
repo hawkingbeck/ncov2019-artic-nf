@@ -182,6 +182,8 @@ process makeConsensus {
         """
 }
 
+
+// Heron Processes
 process alignFastaFile {
 
   tag { sampleName }

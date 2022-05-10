@@ -12,7 +12,7 @@ process readTrimming {
     cpus 2
 
     input:
-    tuple(sampleName, path(forward), path(reverse))
+    tuple(val(sampleName), path(forward), path(reverse))
 
     output:
     tuple(sampleName, path("*_val_1.fq.gz"), path("*_val_2.fq.gz")) optional true

@@ -62,10 +62,10 @@ process readMapping {
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.sorted.bam", mode: 'copy'
 
     input:
-        tuple sampleName, path(forward), path(reverse), path(ref), path("*")
+        tuple val(sampleName), path(forward), path(reverse), path(ref), path("*")
 
     output:
-        tuple(sampleName, path("${sampleName}.sorted.bam"))
+        tuple(val(sampleName), path("${sampleName}.sorted.bam"))
 
     script:
       """
@@ -82,11 +82,11 @@ process trimPrimerSequences {
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.mapped.primertrimmed.sorted.bam", mode: 'copy'
 
     input:
-    tuple sampleName, path(bam), path(bedfile)
+    tuple val(sampleName), path(bam), path(bedfile)
 
     output:
-    tuple sampleName, path("${sampleName}.mapped.bam"), emit: mapped
-    tuple sampleName, path("${sampleName}.mapped.primertrimmed.sorted.bam" ), emit: ptrim
+    tuple val(sampleName), path("${sampleName}.mapped.bam"), emit: mapped
+    tuple val(sampleName), path("${sampleName}.mapped.primertrimmed.sorted.bam" ), emit: ptrim
 
     script:
     if (params.allowNoprimer){
@@ -128,10 +128,10 @@ process callVariants {
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.variants.tsv", mode: 'copy'
 
     input:
-    tuple(sampleName, path(bam), path(ref))
+    tuple(val(sampleName), path(bam), path(ref))
 
     output:
-    tuple sampleName, path("${sampleName}.variants.tsv"), emit: variants
+    tuple val(sampleName), path("${sampleName}.variants.tsv"), emit: variants
 
     script:
         """
@@ -149,10 +149,10 @@ process cramToFastq {
     */
 
     input:
-        tuple sampleName, file(cram)
+        tuple val(sampleName), file(cram)
 
     output:
-        tuple sampleName, path("${sampleName}_1.fastq.gz"), path("${sampleName}_2.fastq.gz")
+        tuple val(sampleName), path("${sampleName}_1.fastq.gz"), path("${sampleName}_2.fastq.gz")
 
     script:
         """
@@ -169,10 +169,10 @@ process makeConsensus {
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.primertrimmed.consensus.fa", mode: 'copy'
 
     input:
-        tuple(sampleName, path(bam))
+        tuple(val(sampleName), path(bam))
 
     output:
-        tuple(sampleName, path("${sampleName}.primertrimmed.consensus.fa"))
+        tuple(val(sampleName), path("${sampleName}.primertrimmed.consensus.fa"))
 
     script:
         """
@@ -191,10 +191,10 @@ process alignFastaFile {
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.aligned.fa", mode: 'copy'
 
   input:
-    tuple sampleName, path(sampleName)
+    tuple val(sampleName), path(sampleName)
 
   output:
-    tuple "${sampleName}.aligned.fa", "${sampleName}.aligned.fa"
+    tuple val("${sampleName}.aligned.fa"), val("${sampleName}.aligned.fa")
 
   script:
     """    
@@ -208,10 +208,10 @@ process variantGenotyper {
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pheVariant.csv", mode: 'copy'
 
   input:
-    tuple sampleName, path(sampleName)
+    tuple val(sampleName), path(sampleName)
 
   output:
-    tuple(sampleName, path("${sampleName}.pheVariant.csv"))
+    tuple(val(sampleName), path("${sampleName}.pheVariant.csv"))
     
   script:
     """
@@ -225,10 +225,10 @@ process pangolin {
   publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${sampleName}.pangoCall.csv", mode: 'copy'
 
   input:
-    tuple sampleName, path(sampleName)
+    tuple val(sampleName), path(sampleName)
 
   output:
-    tuple(sampleName, path("${sampleName}.pangoCall.csv"))
+    tuple(val(sampleName), path("${sampleName}.pangoCall.csv"))
 
     """
     conda run -n pangolin python ${params.pangolinScript} --fasta_filename ${sampleName} --results_filename "${sampleName}.pangoCall.csv"

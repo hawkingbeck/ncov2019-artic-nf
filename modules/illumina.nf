@@ -9,7 +9,7 @@ process readTrimming {
 
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: '*_val_{1,2}.fq.gz', mode: 'copy'
 
-    cpus 2
+    cpus 1
 
     input:
     tuple(val(sampleName), path(forward), path(reverse))

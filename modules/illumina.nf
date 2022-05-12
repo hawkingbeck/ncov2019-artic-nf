@@ -198,7 +198,7 @@ process alignFastaFile {
 
   script:
     """    
-    conda run -n artic-ncov2019-illumina python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.aligned.fa"
+    python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.aligned.fa"
     """
 }
 process variantGenotyper {

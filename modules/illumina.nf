@@ -9,7 +9,7 @@ process readTrimming {
 
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: '*_val_{1,2}.fq.gz', mode: 'copy'
 
-    cpus 1
+    cpus 2
 
     input:
     tuple(val(sampleName), path(forward), path(reverse))
@@ -198,7 +198,7 @@ process alignFastaFile {
 
   script:
     """    
-    conda run -n artic python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.aligned.fa"
+    conda run -n artic-ncov2019-illumina python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.aligned.fa"
     """
 }
 process variantGenotyper {

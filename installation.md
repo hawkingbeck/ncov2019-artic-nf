@@ -31,10 +31,15 @@ git clone https://github.com/hawkingbeck/ncov2019-artic-nf
 cd ncov2019-artic-nf
 
 ## Run the pipeline
+mkdir ~/nextflowCache
 export INPUT_DIR=/home/ubuntu/testData/PGIM21-R001
 export OUTPUT_DIR=/home/ubuntu/testData/PGIM21-R001/output
 
-nextflow run main.nf -profile conda --illumina --prefix "output" --directory $INPUT_DIR --outdir $OUTPUT_DIR 
+cd ~/
+
+nextflow run main.nf -profile conda --illumina --prefix "output" --cache=~/nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
+
+nextflow run main.nf -profile conda --illumina --prefix "output" --cache=nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 
 
 <!-- cd ~/downloads

@@ -194,7 +194,7 @@ process alignFastaFile {
     tuple val(sampleName), path(sampleName)
 
   output:
-    tuple val("${sampleName}.aligned.fa"), val("${sampleName}.aligned.fa")
+    tuple val("${sampleName}.aligned.fa"), path("${sampleName}.aligned.fa")
 
   script:
     """    

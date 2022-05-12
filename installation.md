@@ -9,15 +9,6 @@ sudo apt-get install libncurses5-dev
 sudo apt-get install libncursesw5-dev
 sudo apt-get install liblzma-dev
 
-## Step 2. Install Minimap2
-cd ~/
-mkdir repos
-cd repos
-git clone https://github.com/lh3/minimap2
-cd minimap2
-make
-
-
 ## Step 1. Install Anacaonda
 
 mkdir downloads
@@ -26,18 +17,28 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 source ~/.profile
 
-
 ## Step 2. Install Pangolin Conda Environment
 
 https://github.com/cov-lineages/pangolin 
-
-
 cd repos
 git clone https://github.com/cov-lineages/pangolin 
 cd pangolin
 conda env create -f environment.yml
 conda activate pangolin
 pip install .
+
+## Step 2. Install Minimap2
+conda activate pangolin
+cd ~/
+mkdir repos
+cd repos
+git clone https://github.com/lh3/minimap2
+cd minimap2
+make
+
+<!-- ## Step 3. Install pysam
+conda activate pangolin -->
+
 
 ## Step 3. Install Nextflow
 conda config --add channels bioconda
@@ -48,6 +49,10 @@ cd ~/
 cd repos
 git clone https://github.com/hawkingbeck/ncov2019-artic-nf
 cd ncov2019-artic-nf
+
+# Step 6. Copy Resources
+mkdir ~/resources
+cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
 
 ## Run the pipeline
 mkdir ~/nextflowCache

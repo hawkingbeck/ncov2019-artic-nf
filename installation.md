@@ -1,3 +1,23 @@
+## Step 1. Install prerequsistes
+
+sudo apt-get update
+sudo apt-get install gcc
+sudo apt-get install make
+sudo apt-get install libbz2-dev
+sudo apt-get install zlib1g-dev
+sudo apt-get install libncurses5-dev 
+sudo apt-get install libncursesw5-dev
+sudo apt-get install liblzma-dev
+
+## Step 2. Install Minimap2
+cd ~/
+mkdir repos
+cd repos
+git clone https://github.com/lh3/minimap2
+cd minimap2
+make
+
+
 ## Step 1. Install Anacaonda
 
 mkdir downloads
@@ -11,8 +31,7 @@ source ~/.profile
 
 https://github.com/cov-lineages/pangolin 
 
-cd ~/
-mkdir repos
+
 cd repos
 git clone https://github.com/cov-lineages/pangolin 
 cd pangolin
@@ -39,7 +58,7 @@ cd ~/
 
 nextflow run main.nf -profile conda --illumina --prefix "output" --cache=~/nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 
-nextflow run main.nf -profile conda --illumina --prefix "output" --cache=nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
+nextflow run /home/ubuntu/repos/ncov2019-artic-nf/main.nf -profile conda --illumina --prefix "output" --cache=nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 
 
 <!-- cd ~/downloads

@@ -198,7 +198,7 @@ process alignFastaFile {
 
   script:
     """    
-    python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.aligned.fa"
+    conda run -n pangolin python ${params.alignConsensusScript} --consensusFastaFilePath ${sampleName} --alignedFastaFilepath "${sampleName}.aligned.fa"
     """
 }
 process variantGenotyper {
@@ -215,7 +215,7 @@ process variantGenotyper {
     
   script:
     """
-    conda run -n artic python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile} --output_filename "${sampleName}.pheVariant.csv"
+    python ${params.genotyperScript} --fasta_filename ${sampleName} --genotype_recipe_filename ${params.pheRecipesFile} --output_filename "${sampleName}.pheVariant.csv"
     """
 }
 

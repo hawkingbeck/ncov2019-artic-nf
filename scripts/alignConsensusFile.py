@@ -10,8 +10,8 @@ import json
 from datetime import datetime
 from decimal import Decimal
 import difflib
-from Bio import SeqIO
-import pysam
+# from Bio import SeqIO
+# import pysam
 
 def alignFasta(refFastaFilePath, consensusFilepath, alignedFastaFilepath, trimStart, trimEnd):
   ##############################################

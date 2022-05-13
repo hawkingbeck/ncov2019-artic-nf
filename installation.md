@@ -1,33 +1,34 @@
 ## Step 1. Install prerequsistes
 
-sudo apt-get update
-sudo apt-get install gcc
-sudo apt-get install make
-sudo apt-get install libbz2-dev
-sudo apt-get install zlib1g-dev
-sudo apt-get install libncurses5-dev 
-sudo apt-get install libncursesw5-dev
-sudo apt-get install liblzma-dev
+sudo apt-get -y update
+sudo apt-get -y install gcc
+sudo apt-get -y install make
+sudo apt-get -y install libbz2-dev
+sudo apt-get -y install zlib1g-dev
+sudo apt-get -y install libncurses5-dev
+sudo apt-get -y install libncursesw5-dev
+sudo apt-get -y install liblzma-dev
 
-## Step 1. Install Anacaonda
+## Step 2. Install Anacaonda
 
 mkdir downloads
 cd downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh /S /D=%UserProfile%\Miniconda3
 source ~/.profile
 
-## Step 2. Install Pangolin Conda Environment
+## Step 3. Install Pangolin Conda Environment
 
 https://github.com/cov-lineages/pangolin 
-cd repos
+mkdir ~/repos
+cd ~/repos
 git clone https://github.com/cov-lineages/pangolin 
 cd pangolin
 conda env create -f environment.yml
 conda activate pangolin
 pip install .
 
-## Step 2. Install Minimap2
+## Step 4. Install Minimap2
 conda activate pangolin
 cd ~/
 mkdir repos
@@ -36,19 +37,20 @@ git clone https://github.com/lh3/minimap2
 cd minimap2
 make
 
-<!-- ## Step 3. Install pysam
-conda activate pangolin -->
-
-
-## Step 3. Install Nextflow
+## Step 5. Install Nextflow
 conda config --add channels bioconda
 conda install nextflow=21.10.6
 
 ## Clone Nextflow pipeline repo
-cd ~/
-cd repos
+cd ~/repos
 git clone https://github.com/hawkingbeck/ncov2019-artic-nf
 cd ncov2019-artic-nf
+
+## Step 7. Install basespace
+<!-- mkdir ~/bin
+wget "https://launch.basespace.illumina.com/CLI/latest/amd64-linux/bs" -O $HOME/bin/bs
+chmod u+x $HOME/bin/bs
+bs --help -->
 
 # Step 6. Copy Resources
 mkdir ~/resources
@@ -60,8 +62,6 @@ export INPUT_DIR=/home/ubuntu/testData/PGIM21-R001
 export OUTPUT_DIR=/home/ubuntu/testData/PGIM21-R001/output
 
 cd ~/
-
-nextflow run main.nf -profile conda --illumina --prefix "output" --cache=~/nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 
 nextflow run /home/ubuntu/repos/ncov2019-artic-nf/main.nf -profile conda --illumina --prefix "output" --cache=nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 

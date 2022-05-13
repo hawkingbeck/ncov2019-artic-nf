@@ -1,3 +1,4 @@
+#!/bin/sh
 
 # Install required libraries
 sudo apt-get -y update

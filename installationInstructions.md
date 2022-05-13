@@ -5,6 +5,18 @@ cd ~/repos
 git clone https://github.com/hawkingbeck/ncov2019-artic-nf
 cd ncov2019-artic-nf
 
+## Step 2. Run the installation script
+bash ./installationScript.sh
+
+
+## Run the pipeline
+mkdir ~/nextflowCache
+export INPUT_DIR=/home/ubuntu/testData/PGIM21-R001
+export OUTPUT_DIR=/home/ubuntu/testData/PGIM21-R001/output
+
+cd ~/
+
+nextflow run /home/ubuntu/repos/ncov2019-artic-nf/main.nf -profile conda --illumina --prefix "output" --cache=nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 
 ## Step 1. Install prerequsistes
 
@@ -64,14 +76,7 @@ bs --help -->
 mkdir ~/resources
 cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
 
-## Run the pipeline
-mkdir ~/nextflowCache
-export INPUT_DIR=/home/ubuntu/testData/PGIM21-R001
-export OUTPUT_DIR=/home/ubuntu/testData/PGIM21-R001/output
 
-cd ~/
-
-nextflow run /home/ubuntu/repos/ncov2019-artic-nf/main.nf -profile conda --illumina --prefix "output" --cache=nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 
 
 <!-- cd ~/downloads

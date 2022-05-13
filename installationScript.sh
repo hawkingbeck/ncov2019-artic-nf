@@ -15,7 +15,7 @@ mkdir ~/downloads
 cd ~/downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/Miniconda3
-eval "$($HOME/Miniconda3/bin/conda shell.bash hook)"
+eval "$(/home/ubuntu/Miniconda3/bin/conda shell.bash hook)"
 
 # Install Pangolin
 cd ~/repos
@@ -38,6 +38,6 @@ conda config --add channels bioconda
 conda install -y nextflow=21.10.6
 
 # Copy the resources
-mkdir ~/resources
-cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
+sudo mkdir ~/resources
+sudo cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
 

@@ -11,5 +11,12 @@ mkdir ~/downloads
 cd ~/downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/Miniconda3
-# eval "$($HOM/Miniconda3/bin/conda shell.bash hook)"
-# source ~/.profile
+eval "$($HOME/Miniconda3/bin/conda shell.bash hook)"
+
+# Install Pangolin
+cd ~/repos
+git clone https://github.com/cov-lineages/pangolin 
+cd pangolin
+conda env create -f environment.yml
+conda activate pangolin
+pip install .

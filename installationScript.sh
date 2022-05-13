@@ -16,6 +16,7 @@ cd ~/downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/Miniconda3
 eval "$(/home/ubuntu/Miniconda3/bin/conda shell.bash hook)"
+conda init
 
 # Install Pangolin
 cd ~/repos

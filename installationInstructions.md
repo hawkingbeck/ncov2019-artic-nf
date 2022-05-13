@@ -1,3 +1,11 @@
+
+## Step 1. Clone the repo
+mkdir ~/repos
+cd ~/repos
+git clone https://github.com/hawkingbeck/ncov2019-artic-nf
+cd ncov2019-artic-nf
+
+
 ## Step 1. Install prerequsistes
 
 sudo apt-get -y update
@@ -11,8 +19,8 @@ sudo apt-get -y install liblzma-dev
 
 ## Step 2. Install Anacaonda
 
-mkdir downloads
-cd downloads
+mkdir ~/downloads
+cd ~/downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/Miniconda3
 source ~/.profile

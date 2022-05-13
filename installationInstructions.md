@@ -5,8 +5,11 @@ cd ~/repos
 git clone https://github.com/hawkingbeck/ncov2019-artic-nf
 cd ncov2019-artic-nf
 
-## Step 2. Run the installation script
+## Step 2. Run the installation script and activate conda
 bash ./installationScript.sh
+eval "$(/home/ubuntu/Miniconda3/bin/conda shell.bash hook)"
+conda init
+
 
 
 ## Run the pipeline

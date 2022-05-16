@@ -42,3 +42,5 @@ conda install -y nextflow=21.10.6
 sudo mkdir ~/resources
 sudo cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
 
+sudo mkdir ~/nextflowCache
+

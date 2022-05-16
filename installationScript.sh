@@ -39,8 +39,8 @@ conda config --add channels bioconda
 conda install -y nextflow=21.10.6
 
 # Copy the resources
-sudo mkdir ~/resources
-sudo cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
+mkdir ~/resources
+cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
 
-sudo mkdir ~/nextflowCache
+mkdir ~/nextflowCache
 

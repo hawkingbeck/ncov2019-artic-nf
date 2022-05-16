@@ -10,8 +10,6 @@ source ./installationScript.sh
 eval "$(/home/ubuntu/Miniconda3/bin/conda shell.bash hook)"
 conda init
 
-
-
 ## Run the pipeline
 mkdir ~/nextflowCache
 export INPUT_DIR=/home/ubuntu/testData/PGIM21-R001
@@ -21,7 +19,10 @@ cd ~/
 
 nextflow run /home/ubuntu/repos/ncov2019-artic-nf/main.nf -profile conda --illumina --prefix "output" --cache=nextflowCache --directory $INPUT_DIR --outdir $OUTPUT_DIR 
 
-## Step 1. Install prerequsistes
+
+
+
+<!-- ## Step 1. Install prerequsistes
 
 sudo apt-get -y update
 sudo apt-get -y install gcc
@@ -67,7 +68,7 @@ conda install nextflow=21.10.6
 ## Clone Nextflow pipeline repo
 cd ~/repos
 git clone https://github.com/hawkingbeck/ncov2019-artic-nf
-cd ncov2019-artic-nf
+cd ncov2019-artic-nf -->
 
 ## Step 7. Install basespace
 <!-- mkdir ~/bin
@@ -76,8 +77,8 @@ chmod u+x $HOME/bin/bs
 bs --help -->
 
 # Step 6. Copy Resources
-mkdir ~/resources
-cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/
+<!-- mkdir ~/resources
+cp ~/repos/ncov2019-artic-nf/scripts/MN908947.fa ~/resources/ -->
 
 
 

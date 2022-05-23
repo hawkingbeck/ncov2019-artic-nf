@@ -15,7 +15,7 @@ mkdir ~/downloads
 cd ~/downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/Miniconda3
-eval "$(/home/ubuntu/Miniconda3/bin/conda shell.bash hook)"
+eval "$(~/Miniconda3/bin/conda shell.bash hook)"
 conda init
 
 # Install Pangolin
@@ -33,10 +33,11 @@ git clone https://github.com/lh3/minimap2
 cd minimap2
 make
 
-# Install Nextflow
+# Install NextClade and Nextflow
 conda activate pangolin
 conda config --add channels bioconda
 conda install -y nextflow=21.10.6
+conda install -y nextclade
 
 # Copy the resources
 mkdir ~/resources

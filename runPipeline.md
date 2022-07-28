@@ -3,6 +3,7 @@
 For test data, run the below
 ````
 export INPUT_DIR=/home/ubuntu/testData/PGIM21-R001
+export INPUT_DIR=~/testData/PGIM21-R001
 export OUTPUT_DIR=/home/ubuntu/testData/PGIM21-R001/output
 
 nextflow run main.nf -profile conda --cache ~/nextflowCache  --illumina --prefix "output" --directory $INPUT_DIR --outdir $OUTPUT_DIR 
